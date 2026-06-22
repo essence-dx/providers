@@ -1,0 +1,828 @@
+{
+  "schema": "dx.providers.metadata.v1",
+  "schema_version": 1,
+  "source": {
+    "repo": "G:/Dx/providers",
+    "commit": "ddef734a76098f7147a5e7bb9cff57d8c9e2e222",
+    "generated_at": "2026-06-05T19:51:05.776469Z"
+  },
+  "summary": {
+    "provider_count": 30,
+    "alias_count": 67,
+    "content_sha256": "sha256:2fea9f41c48c1c158e2c1600c48f952c079865e9dd07527c3519004f38879f5a"
+  },
+  "redaction": {
+    "secrets_included": false,
+    "statement": "This export contains provider identifiers, model identifiers, and environment variable names only; it never contains credential values, tokens, cookies, or API keys."
+  },
+  "providers": [
+    {
+      "identity": {
+        "canonical_id": "chatgpt-web",
+        "display_name": "ChatGPT Web",
+        "aliases": [
+          "chatgpt"
+        ],
+        "database_ids": [],
+        "runtime_id": "chatgpt-web",
+        "exposure_status": "pending_backend"
+      },
+      "freemium": {
+        "access": "browser_session",
+        "auth": [
+          "browser_session"
+        ],
+        "env_vars": [],
+        "note": "Free ChatGPT web session; backend execution is pending.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "codex-web",
+        "display_name": "OpenAI Codex Web",
+        "aliases": [
+          "openai-codex"
+        ],
+        "database_ids": [],
+        "runtime_id": "codex-web",
+        "exposure_status": "pending_backend"
+      },
+      "freemium": {
+        "access": "premium_account",
+        "auth": [
+          "browser_session"
+        ],
+        "env_vars": [],
+        "note": "ChatGPT account based Codex access; backend execution is pending.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "gemini-web",
+        "display_name": "Gemini Web",
+        "aliases": [],
+        "database_ids": [],
+        "runtime_id": "gemini-web",
+        "exposure_status": "pending_backend"
+      },
+      "freemium": {
+        "access": "browser_session",
+        "auth": [
+          "browser_session"
+        ],
+        "env_vars": [],
+        "note": "Free Gemini web session; backend execution is pending.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "antigravity-web",
+        "display_name": "Google Antigravity",
+        "aliases": [
+          "antigravity"
+        ],
+        "database_ids": [],
+        "runtime_id": "antigravity-web",
+        "exposure_status": "pending_backend"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "browser_session"
+        ],
+        "env_vars": [],
+        "note": "Free preview access; backend execution is pending.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "claude-web",
+        "display_name": "Claude Web",
+        "aliases": [],
+        "database_ids": [],
+        "runtime_id": "claude-web",
+        "exposure_status": "pending_backend"
+      },
+      "freemium": {
+        "access": "browser_session",
+        "auth": [
+          "browser_session"
+        ],
+        "env_vars": [],
+        "note": "Claude web session access; backend execution is pending.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "google-gemini",
+        "display_name": "Google AI Studio",
+        "aliases": [
+          "gemini",
+          "google",
+          "google-ai-studio"
+        ],
+        "database_ids": [
+          "gemini"
+        ],
+        "runtime_id": "google-gemini",
+        "exposure_status": "verified_working"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "GOOGLE_API_KEY"
+        ],
+        "note": "Gemini free quotas vary by model and region.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "gemini-oauth",
+        "display_name": "Gemini OAuth",
+        "aliases": [
+          "gemini-cli-oauth"
+        ],
+        "database_ids": [],
+        "runtime_id": "gemini-oauth",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "o_auth"
+        ],
+        "env_vars": [],
+        "note": "Google OAuth flow with free Code Assist style quotas.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "qwen",
+        "display_name": "Qwen OAuth",
+        "aliases": [
+          "dashscope-oauth",
+          "qwen-code"
+        ],
+        "database_ids": [],
+        "runtime_id": "qwen",
+        "exposure_status": "verified_working"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "o_auth"
+        ],
+        "env_vars": [],
+        "note": "Qwen OAuth and Qwen Code account quotas vary by region and release policy.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "groq",
+        "display_name": "Groq",
+        "aliases": [],
+        "database_ids": [
+          "groq"
+        ],
+        "runtime_id": "groq",
+        "exposure_status": "verified_working"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "GROQ_API_KEY"
+        ],
+        "note": "Free developer quota, commonly around 30 RPM with daily request limits.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "cerebras",
+        "display_name": "Cerebras",
+        "aliases": [],
+        "database_ids": [
+          "cerebras"
+        ],
+        "runtime_id": "cerebras",
+        "exposure_status": "verified_working"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "CEREBRAS_API_KEY"
+        ],
+        "note": "Free developer tier, commonly around 30 RPM and 1M tokens per day.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "mistral",
+        "display_name": "Mistral La Plateforme",
+        "aliases": [
+          "codestral"
+        ],
+        "database_ids": [
+          "mistral",
+          "codestral",
+          "text-completion-codestral"
+        ],
+        "runtime_id": "mistral",
+        "exposure_status": "verified_working"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "MISTRAL_API_KEY"
+        ],
+        "note": "Experiment and evaluation access varies by account; Codestral uses the same key.",
+        "free_model_ids": [
+          "codestral-latest"
+        ]
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "openrouter",
+        "display_name": "OpenRouter",
+        "aliases": [],
+        "database_ids": [
+          "openrouter"
+        ],
+        "runtime_id": "openrouter",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "OPENROUTER_API_KEY"
+        ],
+        "note": "Free model routes and daily quotas vary by account and spend history.",
+        "free_model_ids": [
+          "mistralai/mistral-small-3.1-24b-instruct:free",
+          "deepseek/deepseek-r1:free",
+          "meta-llama/llama-3.2-3b-instruct:free"
+        ]
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "opencode-zen",
+        "display_name": "OpenCode Zen",
+        "aliases": [
+          "zen",
+          "opencode-free",
+          "opencode-zen-free"
+        ],
+        "database_ids": [
+          "opencode",
+          "opencode-go"
+        ],
+        "runtime_id": "opencode-zen",
+        "exposure_status": "verified_working"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "public_key",
+          "api_key"
+        ],
+        "env_vars": [
+          "OPENCODE_API_KEY",
+          "OPENCODE_ZEN_API_KEY"
+        ],
+        "note": "Public free-model access works without a private key; paid Zen models require an OpenCode API key.",
+        "free_model_ids": [
+          "big-pickle",
+          "deepseek-v4-flash-free",
+          "mimo-v2.5-free",
+          "minimax-m3-free",
+          "nemotron-3-super-free",
+          "nemotron-3-ultra-free"
+        ]
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "cohere",
+        "display_name": "Cohere",
+        "aliases": [],
+        "database_ids": [
+          "cohere"
+        ],
+        "runtime_id": "cohere",
+        "exposure_status": "verified_working"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "COHERE_API_KEY"
+        ],
+        "note": "Free developer request quota varies by model and account.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "nvidia",
+        "display_name": "NVIDIA NIM",
+        "aliases": [
+          "nvidia-nim",
+          "nvidia_nim"
+        ],
+        "database_ids": [
+          "nvidia_nim"
+        ],
+        "runtime_id": "nvidia",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "NVIDIA_API_KEY"
+        ],
+        "note": "NVIDIA NIM has no-credit-card developer quotas for many hosted models.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "sambanova",
+        "display_name": "SambaNova",
+        "aliases": [],
+        "database_ids": [
+          "sambanova"
+        ],
+        "runtime_id": "sambanova",
+        "exposure_status": "verified_working"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "SAMBANOVA_API_KEY"
+        ],
+        "note": "Persistent small developer quota suitable for light usage.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "huggingface",
+        "display_name": "Hugging Face",
+        "aliases": [
+          "hugging-face"
+        ],
+        "database_ids": [
+          "huggingface"
+        ],
+        "runtime_id": "huggingface",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "HUGGINGFACE_API_KEY",
+          "HF_TOKEN"
+        ],
+        "note": "Free inference access depends on model, provider route, and account limits.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "github-models",
+        "display_name": "GitHub Models",
+        "aliases": [
+          "github",
+          "github_models"
+        ],
+        "database_ids": [
+          "github-models"
+        ],
+        "runtime_id": "github-models",
+        "exposure_status": "verified_working"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "GITHUB_TOKEN"
+        ],
+        "note": "Quota depends on GitHub and Copilot plan eligibility.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "fireworks",
+        "display_name": "Fireworks AI",
+        "aliases": [
+          "fireworks-ai",
+          "fireworks_ai"
+        ],
+        "database_ids": [
+          "fireworks_ai"
+        ],
+        "runtime_id": "fireworks",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "FIREWORKS_API_KEY"
+        ],
+        "note": "Free trial availability varies by account.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "deepseek",
+        "display_name": "DeepSeek",
+        "aliases": [],
+        "database_ids": [
+          "deepseek"
+        ],
+        "runtime_id": "deepseek",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_credits",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "DEEPSEEK_API_KEY"
+        ],
+        "note": "Free credit promotions vary by account and region.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "together",
+        "display_name": "Together AI",
+        "aliases": [
+          "together-ai",
+          "together_ai",
+          "togetherai"
+        ],
+        "database_ids": [
+          "together_ai",
+          "togetherai"
+        ],
+        "runtime_id": "together",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_credits",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "TOGETHER_API_KEY"
+        ],
+        "note": "Free credit availability varies by account.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "cloudflare",
+        "display_name": "Cloudflare Workers AI",
+        "aliases": [
+          "cloudflare-workers-ai",
+          "workers-ai"
+        ],
+        "database_ids": [
+          "cloudflare",
+          "cloudflare-workers-ai"
+        ],
+        "runtime_id": "cloudflare",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "cloud_account",
+          "api_key"
+        ],
+        "env_vars": [
+          "CLOUDFLARE_API_TOKEN",
+          "CLOUDFLARE_ACCOUNT_ID"
+        ],
+        "note": "Workers AI free quota is measured in neurons with account-level limits.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "anthropic",
+        "display_name": "Anthropic",
+        "aliases": [
+          "claude"
+        ],
+        "database_ids": [
+          "anthropic"
+        ],
+        "runtime_id": "anthropic",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_credits",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "ANTHROPIC_API_KEY"
+        ],
+        "note": "Credit availability and verification requirements vary by account.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "perplexity",
+        "display_name": "Perplexity",
+        "aliases": [],
+        "database_ids": [
+          "perplexity"
+        ],
+        "runtime_id": "perplexity",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "PERPLEXITY_API_KEY"
+        ],
+        "note": "Free or trial availability varies by account.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "replicate",
+        "display_name": "Replicate",
+        "aliases": [],
+        "database_ids": [
+          "replicate"
+        ],
+        "runtime_id": "replicate",
+        "exposure_status": "implemented"
+      },
+      "freemium": {
+        "access": "free_credits",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "REPLICATE_API_TOKEN",
+          "REPLICATE_API_KEY"
+        ],
+        "note": "Trial credit availability varies by account.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "ovhcloud",
+        "display_name": "OVHcloud AI Endpoints",
+        "aliases": [
+          "ovh-ai-endpoints"
+        ],
+        "database_ids": [
+          "ovhcloud"
+        ],
+        "runtime_id": null,
+        "exposure_status": "catalog_only"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "OVH_AI_ENDPOINTS_ACCESS_TOKEN"
+        ],
+        "note": "Catalog-only in this CLI slice; OVH advertises limited free IP/key quotas.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "zai",
+        "display_name": "ZAI",
+        "aliases": [
+          "z-ai",
+          "zhipu",
+          "glm-provider"
+        ],
+        "database_ids": [
+          "zai",
+          "zai-coding-plan",
+          "vertex_ai-zai_models"
+        ],
+        "runtime_id": null,
+        "exposure_status": "catalog_only"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "ZAI_API_KEY"
+        ],
+        "note": "Catalog-only in this CLI slice; free Flash model access requires provider verification.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "scaleway",
+        "display_name": "Scaleway",
+        "aliases": [],
+        "database_ids": [
+          "scaleway"
+        ],
+        "runtime_id": null,
+        "exposure_status": "catalog_only"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "SCALEWAY_API_KEY"
+        ],
+        "note": "Catalog-only in this CLI slice; free-token program requires provider verification.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "dashscope",
+        "display_name": "Alibaba DashScope",
+        "aliases": [
+          "alibaba-dashscope",
+          "alibaba"
+        ],
+        "database_ids": [
+          "dashscope",
+          "alibaba-cn",
+          "alibaba-coding-plan",
+          "alibaba-coding-plan-cn"
+        ],
+        "runtime_id": "qwen",
+        "exposure_status": "catalog_only"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "api_key"
+        ],
+        "env_vars": [
+          "DASHSCOPE_API_KEY"
+        ],
+        "note": "DashScope free-token grants vary by model, region, and account age.",
+        "free_model_ids": []
+      }
+    },
+    {
+      "identity": {
+        "canonical_id": "gemini-cli",
+        "display_name": "Gemini CLI",
+        "aliases": [
+          "google-gemini-cli"
+        ],
+        "database_ids": [],
+        "runtime_id": null,
+        "exposure_status": "catalog_only"
+      },
+      "freemium": {
+        "access": "free_tier",
+        "auth": [
+          "local_runtime"
+        ],
+        "env_vars": [],
+        "note": "Local Gemini CLI integration can use personal Google account quotas.",
+        "free_model_ids": []
+      }
+    }
+  ],
+  "alias_index": {
+    "alibaba": "dashscope",
+    "alibaba-cn": "dashscope",
+    "alibaba-coding-plan": "dashscope",
+    "alibaba-coding-plan-cn": "dashscope",
+    "alibaba-dashscope": "dashscope",
+    "anthropic": "anthropic",
+    "antigravity": "antigravity-web",
+    "antigravity-web": "antigravity-web",
+    "cerebras": "cerebras",
+    "chatgpt": "chatgpt-web",
+    "chatgpt-web": "chatgpt-web",
+    "claude": "anthropic",
+    "claude-web": "claude-web",
+    "cloudflare": "cloudflare",
+    "cloudflare-workers-ai": "cloudflare",
+    "codestral": "mistral",
+    "codex-web": "codex-web",
+    "cohere": "cohere",
+    "dashscope": "dashscope",
+    "dashscope-oauth": "qwen",
+    "deepseek": "deepseek",
+    "fireworks": "fireworks",
+    "fireworks-ai": "fireworks",
+    "gemini": "google-gemini",
+    "gemini-cli": "gemini-cli",
+    "gemini-cli-oauth": "gemini-oauth",
+    "gemini-oauth": "gemini-oauth",
+    "gemini-web": "gemini-web",
+    "github": "github-models",
+    "github-models": "github-models",
+    "glm-provider": "zai",
+    "google": "google-gemini",
+    "google-ai-studio": "google-gemini",
+    "google-gemini": "google-gemini",
+    "google-gemini-cli": "gemini-cli",
+    "groq": "groq",
+    "hugging-face": "huggingface",
+    "huggingface": "huggingface",
+    "mistral": "mistral",
+    "nvidia": "nvidia",
+    "nvidia-nim": "nvidia",
+    "openai-codex": "codex-web",
+    "opencode": "opencode-zen",
+    "opencode-free": "opencode-zen",
+    "opencode-go": "opencode-zen",
+    "opencode-zen": "opencode-zen",
+    "opencode-zen-free": "opencode-zen",
+    "openrouter": "openrouter",
+    "ovh-ai-endpoints": "ovhcloud",
+    "ovhcloud": "ovhcloud",
+    "perplexity": "perplexity",
+    "qwen": "qwen",
+    "qwen-code": "qwen",
+    "replicate": "replicate",
+    "sambanova": "sambanova",
+    "scaleway": "scaleway",
+    "text-completion-codestral": "mistral",
+    "together": "together",
+    "together-ai": "together",
+    "togetherai": "together",
+    "vertex-ai-zai-models": "zai",
+    "workers-ai": "cloudflare",
+    "z-ai": "zai",
+    "zai": "zai",
+    "zai-coding-plan": "zai",
+    "zen": "opencode-zen",
+    "zhipu": "zai"
+  }
+}

@@ -1,0 +1,75 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@5.0
+
+parameters:
+  release_artifacts:
+    type: boolean
+    default: false
+
+jobs:
+  windows-release:
+    executor:
+      name: win/default
+      size: medium
+    steps:
+      - checkout
+      - run:
+          name: Install Rust
+          shell: powershell.exe
+          command: |
+            Invoke-WebRequest -Uri "https://win.rustup.rs/x86_64" -OutFile "rustup-init.exe"
+            .\rustup-init.exe -y --default-toolchain 1.94.0 --profile minimal
+      - run:
+          name: Build Windows release artifacts
+          shell: powershell.exe
+          command: |
+            $env:Path = "$env:USERPROFILE\.cargo\bin;$env:Path"
+            $ErrorActionPreference = "Stop"
+            $env:CIRCLECI_GH_TOKEN = [System.Environment]::GetEnvironmentVariable("CIRCLECI_GH_TOKEN")
+            git config --global url."https://x-access-token:$env:CIRCLECI_GH_TOKEN@github.com/".insteadOf "https://github.com/"
+            git config --global url."https://x-access-token:$env:CIRCLECI_GH_TOKEN@github.com/".insteadOf "ssh://git@github.com/"
+            $env:CARGO_NET_GIT_FETCH_WITH_CLI = "true"
+            cargo build --release
+            New-Item -ItemType Directory -Path dist -Force | Out-Null
+            
+            if (Test-Path "target\release\dx-providers.exe") {
+                Copy-Item -Path "target\release\dx-providers.exe" -Destination "dist\dx-providers.exe" -Force
+            }
+
+            if ($env:CIRCLE_SHA1) {
+                $shortSha = $env:CIRCLE_SHA1.Substring(0, 12)
+            } else {
+                $shortSha = "local"
+            }
+            $archive = "dx-providers-windows-x86_64-$shortSha.zip"
+            if (Test-Path "dist\*.exe") {
+                Compress-Archive -Path "dist\*" -DestinationPath "dist\$archive" -Force
+                $hash = Get-FileHash -Algorithm SHA256 -Path "dist\$archive"
+                "$($hash.Hash.ToLowerInvariant())  $archive" | Set-Content -Path "dist\SHA256SUMS.txt" -Encoding ASCII
+            }
+      - store_artifacts:
+          path: dist
+      - run:
+          name: Upload artifact to GitHub release
+          shell: powershell.exe
+          command: |
+            choco install gh -y --no-progress --limit-output
+            refreshenv
+            $env:GH_TOKEN = [System.Environment]::GetEnvironmentVariable("CIRCLECI_GH_TOKEN")
+            $env:Path = "C:\Program Files\GitHub CLI;$env:Path"
+            $tag = "windows"
+            gh release create $tag --repo $env:CIRCLE_PROJECT_USERNAME/$env:CIRCLE_PROJECT_REPONAME --title "Windows Release" --target $env:CIRCLE_SHA1 2>$null; $LASTEXITCODE = 0
+            $zipFiles = @(Get-ChildItem -Path dist -Filter "*.zip")
+            if ($zipFiles.Count -eq 0) {
+                Write-Error "No zip artifacts found in dist/ to upload"
+                exit 1
+            }
+            gh release upload $tag ($zipFiles | ForEach-Object { $_.FullName }) --repo $env:CIRCLE_PROJECT_USERNAME/$env:CIRCLE_PROJECT_REPONAME --clobber
+
+workflows:
+  release:
+    when: << pipeline.parameters.release_artifacts >>
+    jobs:
+      - windows-release

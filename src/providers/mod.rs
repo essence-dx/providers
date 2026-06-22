@@ -1,0 +1,15 @@
+pub mod anthropic;
+pub mod antigravity_web;
+pub mod chatgpt_web;
+pub mod claude_web;
+pub mod cloudflare;
+pub mod codex_web;
+pub mod gemini_web;
+pub mod google_gemini;
+pub mod google_gemini_oauth;
+pub mod openai_compat;
+pub mod opencode_zen;
+pub mod perplexity;
+pub mod qwen_oauth;
+pub mod replicate;
+pub mod rkyv_loader;

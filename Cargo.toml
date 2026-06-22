@@ -1,0 +1,60 @@
+[package]
+name = "dx-providers"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.94.0"
+description = "Universal free AI CLI — connect to 184 providers with 6,245 models"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# HTTP client
+reqwest = { version = "0.12", features = ["json"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# CLI framework
+clap = { version = "4", features = ["derive"] }
+
+# Error handling
+anyhow = "1"
+thiserror = "2"
+
+# Async trait — needed because native async fn in traits (Rust 1.75+)
+# does NOT support dyn Trait dispatch. The async-trait crate provides
+# the Pin<Box<dyn Future>> desugaring that makes dyn dispatch work.
+# See: https://docs.rs/async-trait — "The stabilization of async
+# functions in traits in Rust 1.75 did not include support for using
+# traits containing async functions as dyn Trait."
+async-trait = "0.1"
+
+# Cookie & Token Extraction
+rookie = "0.5"                  # Extract cookies from real browsers
+cookie = "0.18"                 # HTTP cookie parsing
+
+# Token Storage
+keyring = "3"                   # OS keychain storage
+
+# Streaming LLM Responses
+reqwest-eventsource = "0.6"     # SSE for token streaming
+futures = "0.3"
+
+# Zero-copy deserialization & Memory mapping
+rkyv = { version = "0.7", features = ["validation"] }
+memmap2 = "0.9"
+
+# Utilities
+dirs = "6"
+open = "5"
+chrono = { version = "0.4", features = ["serde"] }
+colored = "3"
+rand = "0.9"
+sha2 = "0.10"
+base64 = "0.22"
+url = "2"
+dotenv = "0.15"
+fs2 = "0.4"
+uuid = { version = "1", features = ["v4"] }
