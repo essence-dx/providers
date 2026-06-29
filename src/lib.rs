@@ -1,11 +1,11 @@
-mod auth;
-mod catalog_archive;
-mod config;
-mod errors;
-mod provider;
-mod provider_metadata;
-mod provider_metadata_export;
-mod providers;
+pub mod auth;
+pub mod catalog_archive;
+pub mod config;
+pub mod errors;
+pub mod provider;
+pub mod provider_metadata;
+pub mod provider_metadata_export;
+pub mod providers;
 
 use anyhow::Result;
 use clap::{Parser, Subcommand};

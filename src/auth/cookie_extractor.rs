@@ -8,7 +8,6 @@ pub enum Browser {
     Chrome,
     Firefox,
     Edge,
-    Safari,
     Opera,
     OperaGX,
     Brave,
@@ -28,7 +27,6 @@ impl Browser {
             Browser::Firefox,
             Browser::Chromium,
             Browser::Vivaldi,
-            Browser::Safari,
         ]
     }
 
@@ -38,7 +36,6 @@ impl Browser {
             Browser::Chrome => "Chrome",
             Browser::Firefox => "Firefox",
             Browser::Edge => "Edge",
-            Browser::Safari => "Safari",
             Browser::Opera => "Opera",
             Browser::OperaGX => "Opera GX",
             Browser::Brave => "Brave",
@@ -49,35 +46,18 @@ impl Browser {
 
     /// Extract cookies from this browser for a specific domain
     pub fn extract_cookies(&self, domain: &str) -> Result<HashMap<String, String>> {
+        let domains = Some(vec![domain.to_string()]);
+
         let cookies = match self {
-            Browser::Chrome => rookie::chrome(Some(vec![domain.to_string()]))
-                .map_err(|e| anyhow::anyhow!("{}", e))?,
-            Browser::Firefox => rookie::firefox(Some(vec![domain.to_string()]))
-                .map_err(|e| anyhow::anyhow!("{}", e))?,
-            Browser::Edge => rookie::edge(Some(vec![domain.to_string()]))
-                .map_err(|e| anyhow::anyhow!("{}", e))?,
-            Browser::Safari => {
-                #[cfg(target_os = "macos")]
-                {
-                    rookie::safari(Some(vec![domain.to_string()]))
-                        .map_err(|e| anyhow::anyhow!("{}", e))?
-                }
-                #[cfg(not(target_os = "macos"))]
-                {
-                    anyhow::bail!("Safari is only available on macOS")
-                }
-            }
-            Browser::Opera => rookie::opera(Some(vec![domain.to_string()]))
-                .map_err(|e| anyhow::anyhow!("{}", e))?,
-            Browser::OperaGX => rookie::opera_gx(Some(vec![domain.to_string()]))
-                .map_err(|e| anyhow::anyhow!("{}", e))?,
-            Browser::Brave => rookie::brave(Some(vec![domain.to_string()]))
-                .map_err(|e| anyhow::anyhow!("{}", e))?,
-            Browser::Chromium => rookie::chromium(Some(vec![domain.to_string()]))
-                .map_err(|e| anyhow::anyhow!("{}", e))?,
-            Browser::Vivaldi => rookie::vivaldi(Some(vec![domain.to_string()]))
-                .map_err(|e| anyhow::anyhow!("{}", e))?,
-        };
+            Browser::Chrome => rookie::chrome(domains),
+            Browser::Firefox => rookie::firefox(domains),
+            Browser::Edge => rookie::edge(domains),
+            Browser::Brave => rookie::brave(domains),
+            Browser::Opera => rookie::opera(domains),
+            Browser::OperaGX => rookie::opera_gx(domains),
+            Browser::Chromium => rookie::chromium(domains),
+            Browser::Vivaldi => rookie::vivaldi(domains),
+        }.map_err(|e| anyhow::anyhow!(e.to_string()))?;
 
         let mut cookie_map = HashMap::new();
         for cookie in cookies {
