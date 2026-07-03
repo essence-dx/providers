@@ -1,3 +1,4 @@
+pub mod dx_config;
 pub mod auth;
 pub mod catalog_archive;
 pub mod config;
@@ -455,6 +456,10 @@ fn run_metadata_command(json: bool, write_sidecar: bool, output: Option<&Path>) 
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    let dx = dx_config::ProvidersDxConfig::load();
+    let _ = std::fs::create_dir_all(&dx.sr_dir);
+    let _ = std::fs::create_dir_all(&dx.receipts_dir);
+
     let cli = Cli::parse();
     let command = cli.command;
 
@@ -464,10 +469,20 @@ async fn main() -> Result<()> {
         output,
     } = &command
     {
-        return run_metadata_command(*json, *write_sidecar, output.as_deref());
+        let ret = run_metadata_command(*json, *write_sidecar, output.as_deref());
+        dx.write_sr("providers", &[("tool", "providers"), ("action", "metadata"), ("status", "ok")])?;
+        if let Some(status) = dx.read_status("providers") {
+            eprintln!("[providers] metadata sr cache verified: {} entries", status.len());
+        }
+        return ret;
     }
     if let Commands::Catalog { command } = &command {
-        return run_catalog_command(command);
+        let ret = run_catalog_command(command);
+        dx.write_sr("providers", &[("tool", "providers"), ("action", "catalog"), ("status", "ok")])?;
+        if let Some(status) = dx.read_status("providers") {
+            eprintln!("[providers] catalog sr cache verified: {} entries", status.len());
+        }
+        return ret;
     }
 
     debug_assert!(command_requires_provider_config(&command));
@@ -1176,6 +1191,10 @@ async fn main() -> Result<()> {
         }
     }
 
+    dx.write_sr("providers", &[("tool", "providers"), ("action", "run"), ("status", "ok")])?;
+    if let Some(status) = dx.read_status("providers") {
+        eprintln!("[providers] run sr cache verified: {} entries", status.len());
+    }
     Ok(())
 }
 
