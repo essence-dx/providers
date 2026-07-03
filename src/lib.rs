@@ -471,6 +471,7 @@ async fn main() -> Result<()> {
     {
         let ret = run_metadata_command(*json, *write_sidecar, output.as_deref());
         dx.write_sr("providers", &[("tool", "providers"), ("action", "metadata"), ("status", "ok")])?;
+        dx.write_global_sr("providers", &[("tool", "providers"), ("action", "metadata"), ("status", "ok")])?;
         if let Some(status) = dx.read_status("providers") {
             eprintln!("[providers] metadata sr cache verified: {} entries", status.len());
         }
@@ -479,6 +480,7 @@ async fn main() -> Result<()> {
     if let Commands::Catalog { command } = &command {
         let ret = run_catalog_command(command);
         dx.write_sr("providers", &[("tool", "providers"), ("action", "catalog"), ("status", "ok")])?;
+        dx.write_global_sr("providers", &[("tool", "providers"), ("action", "catalog"), ("status", "ok")])?;
         if let Some(status) = dx.read_status("providers") {
             eprintln!("[providers] catalog sr cache verified: {} entries", status.len());
         }
@@ -1192,6 +1194,7 @@ async fn main() -> Result<()> {
     }
 
     dx.write_sr("providers", &[("tool", "providers"), ("action", "run"), ("status", "ok")])?;
+    dx.write_global_sr("providers", &[("tool", "providers"), ("action", "run"), ("status", "ok")])?;
     if let Some(status) = dx.read_status("providers") {
         eprintln!("[providers] run sr cache verified: {} entries", status.len());
     }
