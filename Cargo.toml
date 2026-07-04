@@ -59,4 +59,4 @@ dotenv = "0.15"
 fs2 = "0.4"
 uuid = { version = "1", features = ["v4"] }
 rookie = "0.5.6"
-serializer = { path = "../serializer", package = "dx-serializer", version = "0.1.0" }
+serializer = { path = "../serializer", package = "dx-serializer", version = "1.0.0" }
