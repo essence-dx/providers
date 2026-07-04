@@ -1,6 +1,6 @@
 [package]
 name = "dx-providers"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2024"
 rust-version = "1.94.0"
 description = "Universal free AI CLI — connect to 184 providers with 6,245 models"
